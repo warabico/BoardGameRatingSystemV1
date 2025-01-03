@@ -1,59 +1,61 @@
-import { useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
-import { red, green } from "@mui/material/colors";
 import { Gauge } from "@mui/x-charts/Gauge";
+import Grid from "@mui/material/Grid2";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import PersonRemoveAlt1Icon from "@mui/icons-material/PersonRemoveAlt1";
 
-const UserInformation = ({ user, idx }) => {
-    const [join, setJoin] = useState(false);
-
+const UserInformation = ({ user, join, add, del }) => {
     const changeJoin = () => {
-        setJoin((prev) => !prev);
+        if (join) {
+            del(user);
+        } else {
+            add(user);
+        }
     };
 
     return (
         <>
-            <Card
-                key={idx}
-                sx={{ my: 2 }}
-                variant={join ? "outlined" : "elevation"}
-            >
-                <CardHeader
-                    avatar={
-                        <Avatar
-                            sx={{ bgcolor: join ? red[500] : green[500] }}
-                            aria-label="recipe"
-                        >
-                            <b>{user.username[0]}</b>
-                        </Avatar>
-                    }
-                    action={
-                        <Gauge
-                            width={90}
-                            height={90}
-                            value={user.rating}
-                            valueMin={0}
-                            valueMax={2000}
-                        />
-                    }
-                    title={user.username}
-                    subheader={join ? "Join" : "Not Join"}
-                />
-                <CardActions disableSpacing>
-                    <IconButton aria-label="join" onClick={changeJoin}>
-                        {join ? (
-                            <PersonRemoveAlt1Icon />
-                        ) : (
-                            <PersonAddAlt1Icon />
-                        )}
-                    </IconButton>
-                </CardActions>
-            </Card>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                <Card
+                    key={user.id}
+                    sx={{ my: 2 }}
+                    variant={join ? "outlined" : "elevation"}
+                >
+                    <CardHeader
+                        avatar={
+                            <IconButton
+                                aria-label="join"
+                                onClick={changeJoin}
+                                style={
+                                    join
+                                        ? { background: "red" }
+                                        : { background: "green" }
+                                }
+                            >
+                                {join ? (
+                                    <PersonRemoveAlt1Icon />
+                                ) : (
+                                    <PersonAddAlt1Icon />
+                                )}
+                            </IconButton>
+                        }
+                        action={
+                            <Gauge
+                                width={70}
+                                height={70}
+                                value={user.rating}
+                                valueMin={0}
+                                valueMax={2000}
+                                sx={{ fontSize: "12px", fontWeight: "bold" }}
+                            />
+                        }
+                        title={user.username}
+                        subheader={user.rating}
+                    />
+                </Card>
+            </Grid>
         </>
     );
 };

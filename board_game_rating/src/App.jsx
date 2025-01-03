@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import AppNavbar from "./components/AppNavbar";
 import UserRegistration from "./components/UserRegistration";
 import UserList from "./components/UserList";
+import JoinUserList from "./components/joinUserList";
 
 const STORAGE_KEY_USERS = "local-storage-users";
 const STORAGE_KEY_HISTORIES = "local-storage-histories";
@@ -23,6 +25,7 @@ function App() {
     let restoredHistories = getLocalData(STORAGE_KEY_HISTORIES) ?? [];
 
     const [users, setUsers] = useState(restoredUsers);
+    const [joinUsers, setJoinUsers] = useState([]);
     const [histories, setHistories] = useState(restoredHistories);
 
     useEffect(() => {
@@ -49,9 +52,16 @@ function App() {
                 spacing={1}
                 sx={{ my: 2, paddingTop: 2, paddingBottom: 2 }}
             >
-                <UserRegistration register={addUser} />
-                <UserList users={users} />
-                <button onClick={resetData}>RESET</button>
+                <UserRegistration register={addUser} reset={resetData} />
+                <UserList
+                    users={users}
+                    joinUsersState={[joinUsers, setJoinUsers]}
+                />
+                <Divider />
+                <JoinUserList
+                    users={users}
+                    joinUsersState={[joinUsers, setJoinUsers]}
+                />
             </Container>
         </ThemeProvider>
     );

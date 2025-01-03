@@ -3,8 +3,9 @@ import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const UserRegistration = ({ register }) => {
+const UserRegistration = ({ register, reset }) => {
     const [username, setUsername] = useState("");
 
     const submit = (e) => {
@@ -25,24 +26,34 @@ const UserRegistration = ({ register }) => {
 
     return (
         <>
-            <form onSubmit={submit}>
-                <Stack spacing={2} direction="row">
-                    <TextField
-                        id="username"
-                        label="username"
-                        variant="standard"
-                        value={username}
-                        onChange={updateUsername}
-                    />
-                    <Button
-                        variant="outlined"
-                        onClick={submit}
-                        disabled={username === ""}
-                    >
-                        Register
-                    </Button>
-                </Stack>
-            </form>
+            <Stack spacing={2} direction="row">
+                <form onSubmit={submit}>
+                    <Stack spacing={2} direction="row">
+                        <TextField
+                            id="username"
+                            label="username"
+                            variant="standard"
+                            value={username}
+                            onChange={updateUsername}
+                        />
+                        <Button
+                            variant="contained"
+                            onClick={submit}
+                            disabled={username === ""}
+                        >
+                            Register
+                        </Button>
+                    </Stack>
+                </form>
+                <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={reset}
+                    startIcon={<DeleteIcon />}
+                >
+                    RESET
+                </Button>
+            </Stack>
         </>
     );
 };
