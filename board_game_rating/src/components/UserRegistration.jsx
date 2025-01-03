@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import TextField from "@mui/material/TextField";
 
 const UserRegistration = ({ register }) => {
     const [username, setUsername] = useState("");
@@ -23,12 +24,13 @@ const UserRegistration = ({ register }) => {
     return (
         <>
             <form onSubmit={submit}>
-                <input
+                <TextField
                     id="username"
-                    type="text"
+                    label="username"
+                    variant="standard"
                     value={username}
                     onChange={updateUsername}
-                ></input>
+                />
             </form>
         </>
     );

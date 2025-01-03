@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container } from "@mui/material";
+import AppNavbar from "./components/AppNavbar";
 import UserRegistration from "./components/UserRegistration";
+import UserList from "./components/UserList";
 
 const STORAGE_KEY_USERS = "local-storage-users";
 const STORAGE_KEY_HISTORIES = "local-storage-histories";
@@ -41,15 +43,10 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
+            <AppNavbar />
             <Container maxWidth="lg" sx={{ paddingTop: 2, paddingBottom: 2 }}>
                 <UserRegistration register={addUser} />
-                {users.map((user, idx) => {
-                    return (
-                        <p>
-                            {idx} : {user.username} RATING = {user.rating}
-                        </p>
-                    );
-                })}
+                <UserList users={users} />
                 <button onClick={resetData}>RESET</button>
             </Container>
         </ThemeProvider>
