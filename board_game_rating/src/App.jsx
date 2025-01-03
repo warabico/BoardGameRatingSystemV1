@@ -44,7 +44,11 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <AppNavbar />
-            <Container maxWidth="lg" sx={{ paddingTop: 2, paddingBottom: 2 }}>
+            <Container
+                maxWidth="lg"
+                spacing={1}
+                sx={{ my: 2, paddingTop: 2, paddingBottom: 2 }}
+            >
                 <UserRegistration register={addUser} />
                 <UserList users={users} />
                 <button onClick={resetData}>RESET</button>

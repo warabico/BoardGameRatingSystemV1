@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const UserRegistration = ({ register }) => {
     const [username, setUsername] = useState("");
@@ -11,7 +13,7 @@ const UserRegistration = ({ register }) => {
             register({
                 id: nanoid(),
                 username: username,
-                rating: 1000,
+                rating: 900 + Math.floor(Math.random() * 2e2),
             });
             setUsername("");
         }
@@ -24,13 +26,18 @@ const UserRegistration = ({ register }) => {
     return (
         <>
             <form onSubmit={submit}>
-                <TextField
-                    id="username"
-                    label="username"
-                    variant="standard"
-                    value={username}
-                    onChange={updateUsername}
-                />
+                <Stack spacing={2} direction="row">
+                    <TextField
+                        id="username"
+                        label="username"
+                        variant="standard"
+                        value={username}
+                        onChange={updateUsername}
+                    />
+                    <Button variant="outlined" onClick={submit}>
+                        Register
+                    </Button>
+                </Stack>
             </form>
         </>
     );
