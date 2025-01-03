@@ -34,7 +34,11 @@ const UserRegistration = ({ register }) => {
                         value={username}
                         onChange={updateUsername}
                     />
-                    <Button variant="outlined" onClick={submit}>
+                    <Button
+                        variant="outlined"
+                        onClick={submit}
+                        disabled={username === ""}
+                    >
                         Register
                     </Button>
                 </Stack>
