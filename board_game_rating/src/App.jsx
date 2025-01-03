@@ -6,6 +6,7 @@ import AppNavbar from "./components/AppNavbar";
 import UserRegistration from "./components/UserRegistration";
 import UserList from "./components/UserList";
 import JoinUserList from "./components/joinUserList";
+import AppDashBoard from "./components/AppDashBoard";
 
 const STORAGE_KEY_USERS = "local-storage-users";
 const STORAGE_KEY_HISTORIES = "local-storage-histories";
@@ -45,25 +46,23 @@ function App() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <AppNavbar />
-            <Container
-                maxWidth="lg"
-                sx={{ my: 1, paddingTop: 1, paddingBottom: 1 }}
-            >
-                <UserRegistration register={addUser} reset={resetData} />
-                <Divider />
-                <UserList
-                    users={users}
-                    joinUsersState={[joinUsers, setJoinUsers]}
-                />
-                <Divider />
-                <JoinUserList
-                    users={users}
-                    joinUsersState={[joinUsers, setJoinUsers]}
-                />
-            </Container>
-        </ThemeProvider>
+        // <ThemeProvider theme={theme}>
+        //     <AppNavbar />
+        //     <Container maxWidth="lg">
+        //         <UserRegistration register={addUser} reset={resetData} />
+        //         <Divider />
+        //         <UserList
+        //             users={users}
+        //             joinUsersState={[joinUsers, setJoinUsers]}
+        //         />
+        //         <Divider />
+        //         <JoinUserList
+        //             users={users}
+        //             joinUsersState={[joinUsers, setJoinUsers]}
+        //         />
+        //     </Container>
+        // </ThemeProvider>
+        <AppDashBoard />
     );
 }
 
