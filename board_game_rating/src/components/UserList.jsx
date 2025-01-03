@@ -28,6 +28,8 @@ const UserList = ({ users = [], joinUsersState }) => {
 
     return (
         <>
+            <br />
+            <h2>Users</h2>
             <Grid container columnSpacing={2}>
                 {users
                     .sort((a, b) => b.rating - a.rating)

@@ -15,6 +15,7 @@ const JoinUserList = ({ users, joinUsersState }) => {
 
     return (
         <>
+            <h2>Result</h2>
             <List>
                 {joinUsers.map((joinUser) => {
                     return (

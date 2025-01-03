@@ -26,6 +26,7 @@ const UserRegistration = ({ register, reset }) => {
 
     return (
         <>
+            <h2>Registration</h2>
             <Stack spacing={2} direction="row">
                 <form onSubmit={submit}>
                     <Stack spacing={2} direction="row">

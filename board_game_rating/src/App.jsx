@@ -49,10 +49,10 @@ function App() {
             <AppNavbar />
             <Container
                 maxWidth="lg"
-                spacing={1}
-                sx={{ my: 2, paddingTop: 2, paddingBottom: 2 }}
+                sx={{ my: 1, paddingTop: 1, paddingBottom: 1 }}
             >
                 <UserRegistration register={addUser} reset={resetData} />
+                <Divider />
                 <UserList
                     users={users}
                     joinUsersState={[joinUsers, setJoinUsers]}
